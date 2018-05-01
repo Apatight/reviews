@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render a label 1`] = `
+<div>
+  <Modal
+    ariaHideApp={true}
+    bodyOpenClassName="ReactModal__Body--open"
+    closeTimeoutMS={0}
+    isOpen={false}
+    onAfterOpen={[Function]}
+    onRequestClose={[Function]}
+    parentSelector={[Function]}
+    portalClassName="ReactModalPortal"
+    shouldCloseOnEsc={true}
+    shouldCloseOnOverlayClick={true}
+    shouldFocusAfterRender={true}
+    shouldReturnFocusAfterClose={true}
+    style={
+      Object {
+        "content": Object {
+          "WebkitOverflowScrolling": "touch",
+          "animationDuration": ".3s",
+          "animationName": "modalFade",
+          "background": "#fff",
+          "border": "0px solid #ccc",
+          "borderRadius": "4px",
+          "bottom": "40px",
+          "left": "20%",
+          "maxWidth": "60%",
+          "outline": "none",
+          "overflow": "auto",
+          "padding": "0px",
+          "position": "absolute",
+          "right": "40px",
+          "top": "50px",
+        },
+        "overlay": Object {
+          "backgroundColor": "rgba(16,24,32,.95)",
+          "bottom": 0,
+          "left": 0,
+          "position": "fixed",
+          "right": 0,
+          "top": 0,
+        },
+      }
+    }
+  >
+    <div
+      className="reviews-modal-container"
+    >
+      <div
+        className="reviews-title"
+      >
+        <div
+          className="reviews-title-google"
+        >
+          GOOGLE REVIEWS
+        </div>
+        <div
+          className="reviews-title-stars"
+        >
+          <span>
+               
+          </span>
+          <div
+            className="reviews-details-ratings-stars"
+          >
+            <div
+              className="reviews-details-ratings-stars-top"
+              style={
+                Object {
+                  "width": "0%",
+                }
+              }
+            >
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+            </div>
+            <div
+              className="reviews-details-ratings-stars-bottom"
+            >
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+              <span>
+                ★
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="review-container-footer"
+      >
+        <div
+          className="reviews-modal-footer"
+        >
+          <center>
+            END OF RESULTS
+          </center>
+        </div>
+      </div>
+    </div>
+  </Modal>
+  <div
+    className="reviews-container"
+  >
+    <div
+      className="reviews-title"
+    >
+      <div
+        className="reviews-title-google"
+      >
+        GOOGLE REVIEWS
+      </div>
+      <div
+        className="reviews-title-stars"
+      >
+        <span>
+             
+        </span>
+        <div
+          className="reviews-details-ratings-stars"
+        >
+          <div
+            className="reviews-details-ratings-stars-top"
+            style={
+              Object {
+                "width": "0%",
+              }
+            }
+          >
+            <span>
+              ★
+            </span>
+            <span>
+              ★
+            </span>
+            <span>
+              ★
+            </span>
+            <span>
+              ★
+            </span>
+            <span>
+              ★
+            </span>
+          </div>
+          <div
+            className="reviews-details-ratings-stars-bottom"
+          >
+            <span>
+              ★
+            </span>
+            <span>
+              ★
+            </span>
+            <span>
+              ★
+            </span>
+            <span>
+              ★
+            </span>
+            <span>
+              ★
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="review-container-footer"
+    >
+      <button
+        className="reviews-footer-btn"
+        onClick={[Function]}
+      >
+        MORE REVIEWS
+      </button>
+    </div>
+  </div>
+</div>
+`;
