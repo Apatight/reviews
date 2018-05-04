@@ -1,4 +1,4 @@
-const fullList = require('./dummydata.json');
+const fullList = require('./places.json');
 const Stores = require('./db/models/store.js');
 const mongoose = require('mongoose');
 
@@ -22,7 +22,7 @@ const seedDb = (array) => {
       if (err) {
         return err;
       }
-      counter++;
+      counter += 1;
       if (counter < array.length) {
         createList();
       } else {

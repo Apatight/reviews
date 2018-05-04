@@ -57,6 +57,4 @@ typings/
 # dotenv environment variables file
 .env
 
-/dummydata.json
-/dummydata2.json
-/dummydata3.json
+/dummydata/

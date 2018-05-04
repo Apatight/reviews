@@ -1,0 +1,1 @@
+mongoimport --jsonArray -d apatight -c restaurants2  --file places.json --numInsertionWorkers 8
