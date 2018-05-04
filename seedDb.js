@@ -1,11 +1,11 @@
-const fullList = require('./195-Zagat-AllData.json');
+const fullList = require('./places.json');
 const Stores = require('./db/models/store.js');
 const mongoose = require('mongoose');
 
 const seedDb = (array) => {
   let counter = 0;
 
-  var createList = () => {
+  const createList = () => {
     const obj = {
       place_id: array[counter].result.place_id,
       name: array[counter].result.name,
@@ -22,7 +22,7 @@ const seedDb = (array) => {
       if (err) {
         return err;
       }
-      counter++;
+      counter += 1;
       if (counter < array.length) {
         createList();
       } else {
