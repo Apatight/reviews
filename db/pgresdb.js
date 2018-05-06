@@ -2,7 +2,7 @@ const { Pool, Client } = require('pg');
 
 const HOST = process.env.POSTGRES_HOST || '127.0.0.1';
 const PORT = process.env.POSTGRES_PORT || 5432;
-const DATABASE = process.env.POSTGRES_DB || 'uniqly';
+const DATABASE = process.env.POSTGRES_DB || 'apatight';
 const USER = process.env.POSTGRES_USER || 'postgres';
 
 const pool = new Pool({
