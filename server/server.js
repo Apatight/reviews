@@ -26,7 +26,6 @@ app.get('/restaurants/:id', (req, res) => {
 });
 
 app.get('/api/restaurants/:id', (req, res) => {
-  // res.send('hello')
   const placeId = req.params.id;
   Stores.findOnePlace(placeId)
     .then((data) => {
@@ -38,7 +37,6 @@ app.get('/api/restaurants/:id', (req, res) => {
 });
 
 app.get('/api/restaurants/:id/reviews', (req, res) => {
-  // res.send('hello')
   const placeId = req.params.id;
   Stores.findReviews(placeId)
     .then((data) => {
