@@ -2,7 +2,7 @@ const fs = require('fs');
 const faker = require('faker');
 
 const entries = 10000000;
-const placeFile = 'dummydata/places2.json';
+const placeFile = 'dummydata/places.json';
 
 const createReview = (index) => {
   const review = {
@@ -67,3 +67,4 @@ const createEntries = (count, fileName) => {
 };
 
 createEntries(entries, placeFile);
+
