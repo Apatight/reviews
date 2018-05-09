@@ -12,14 +12,14 @@ const pool = new Pool({
   port: PORT,
 });
 
-const insertIntoDatabase = (query, values, cb) => {
+const insert = (query, values, cb) => {
   pool.query(query)
     .then(res => cb(null, res))
     .catch(e => cb(e, null));
 };
 
-const queryDatabase = (query, cb) => {
-  pool.query(query)
+const query = (input, cb) => {
+  pool.query(input)
     .then(res => cb(null, res))
     .catch(e => cb(e, null));
 };
@@ -36,7 +36,9 @@ const client = new Client({
 });
 client.connect();
 
-module.exports.query = queryDatabase;
-module.exports.insert = insertIntoDatabase;
-module.exports.findOnePlace = findOnePlace;
-module.exports.findReviews = findReviews;
+module.exports = {
+  query,
+  insert,
+  findOnePlace,
+  findReviews,
+};
