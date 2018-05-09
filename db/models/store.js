@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const mongoUrlDocker = 'mongodb://database/apateez-reviews';
-const mongoUrl = 'mongodb://localhost/apateez-reviews';
+// const mongoUrlDocker = 'mongodb://database/apateez-reviews';
+const mongoUrl = 'mongodb://localhost/apatight';
 
 mongoose.connect(mongoUrl); // Try localhost first
 
@@ -9,14 +9,14 @@ mongoose.connection.on('connected', () => {
   console.log('Mongoose connection open');
 });
 
-mongoose.connection.on('error', (err) => {
-  console.log(`Mongoose default connection error: ${err}`);
-  mongoose.connect(mongoUrlDocker);
-});
+// mongoose.connection.on('error', (err) => {
+//   console.log(`Mongoose default connection error: ${err}`);
+//   mongoose.connect(mongoUrlDocker);
+// });
 
-const storeSchema = mongoose.Schema({
+const RestaurantSchema = mongoose.Schema({
   place_id: {
-    type: String,
+    type: Number,
     unique: true,
   },
   name: String,
@@ -30,18 +30,19 @@ const storeSchema = mongoose.Schema({
   rating: Number,
 });
 
-const Store = mongoose.model('Store', storeSchema);
+const Restaurant = mongoose.model('restaurant', RestaurantSchema);
 
-const findOne = (id, callback) =>
-  // console.log('find one db triggered with ', id);
-  Store.find({ place_id: id }, callback);
+const findOne = (id) => {
+  console.log('find one db triggered with ', id);
+  return Restaurant.find({ place_id: id });
+};
+
 const insertOne = (store, callback) => {
-  console.log('NEW STORE', store);
-  Store.create(store, callback);
+  Restaurant.create(store, callback);
 };
 
 const clearDb = (cb) => {
-  Store.remove({}, cb);
+  Restaurant.remove({}, cb);
 };
 
 

@@ -1,37 +1,35 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Review from './Review.jsx';
-import Description from './Description.jsx';
 import Modal from 'react-modal';
 import axios from 'axios';
+import Review from './Review.jsx';
 
 const customStyles = { // modal styles
-    overlay: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(16,24,32,.95)',
-    },
-    content: {
-      animationName: 'modalFade',
-      animationDuration: '.3s',
-      position: 'absolute',
-      top: '50px',
-      left: '20%',
-      right: '40px',
-      bottom: '40px',
-      border: '0px solid #ccc',
-      background: '#fff',
-      overflow: 'auto',
-      WebkitOverflowScrolling: 'touch',
-      borderRadius: '4px',
-      outline: 'none',
-      padding: '0px',
-      maxWidth: '60%',
-    }
-  }
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(16,24,32,.95)',
+  },
+  content: {
+    animationName: 'modalFade',
+    animationDuration: '.3s',
+    position: 'absolute',
+    top: '50px',
+    left: '20%',
+    right: '40px',
+    bottom: '40px',
+    border: '0px solid #ccc',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '4px',
+    outline: 'none',
+    padding: '0px',
+    maxWidth: '60%',
+  },
+};
 
 // Reviews app
 export default class Reviews extends React.Component {
@@ -53,7 +51,7 @@ export default class Reviews extends React.Component {
   }
 
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.setState({ modalIsOpen: true });
   }
 
   afterOpenModal() {
@@ -61,30 +59,34 @@ export default class Reviews extends React.Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
   }
 
   fetchReviews() {
-    let id = window.location.href.split('/')[4]
-    axios.get(`${BASE_URL}/api/restaurants/${id}`)
-    .then(({data}) => {
-      // console.log('data', data)
-      this.setState({
-        reviewList: data.reviews,
-        rating: data.rating,
+    const id = window.location.href.split('/')[4];
+    axios.get(`/api/restaurants/${id}/reviews`)
+      .then(({ data }) => {
+        let total = 0;
+        for (let i = 0; i < data.length; i += 1) {
+          total += data[i].rating;
+        }
+        const avg = total / data.length;
+        this.setState({
+          reviewList: data,
+          rating: avg,
+        });
       })
-    })
-    .catch((err) => {
-      console.log('ERROR: ', err)
-    })
+      .catch((err) => {
+        console.log('ERROR: ', err);
+      });
   }
 
-   render() {
-     let shortReviewArr = this.state.reviewList.slice(0,3); // Return first 3 reviews only
-     let starsPercentage = (googleRating) => {
-       let percent = googleRating / 5 * 100;
-       return percent + '%';
-     }
+  render() {
+    const shortReviewArr = this.state.reviewList.slice(0, 3); // Return first 3 reviews only
+    const starsPercentage = (googleRating) => {
+      const percent = (googleRating / 5) * 100;
+      return `${percent}%`;
+    };
 
      return (
        <div>

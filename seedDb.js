@@ -1,4 +1,4 @@
-const fullList = require('./places.json');
+const fullList = require('./dummydata/places.json');
 const Stores = require('./db/models/store.js');
 const mongoose = require('mongoose');
 
