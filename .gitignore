@@ -59,4 +59,5 @@ typings/
 
 /dummydata/
 
+/public/app.js
 .DS_Store
