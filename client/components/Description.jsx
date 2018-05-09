@@ -17,8 +17,7 @@ export default class Description extends React.Component {
       serviceScore: '4.4',
       descriptionBody: `<b>"Inventive”</b> yet <b>“approachable”</b>, this Hayes Valley <b>“destination”</b> by Evan and Sarah Rich <b>“wows”</b> with its <b>“unique”</b>, <b>“delectable”</b> Californian dishes matched by a <b>“killer wine list”</b> and <b>“warm”</b> service in a minimalist (and <b>“loud”</b>) space adorned with salvaged barn wood; it's <b>“hard to get into”</b> (though walk-ins can sit at the bar or the communal table) and the <b>“pricey”</b>, <b>“locally sourced”</b> menu <b>“changes”</b> often, but <b>“if the stars align, you will leave sockless"</b>.`,
     };
-    this.fetchReviews = this.fetchReviews.bind(this)
-
+    this.fetchReviews = this.fetchReviews.bind(this);
   }
   componentDidMount() {
     this.fetchReviews();
@@ -29,20 +28,23 @@ export default class Description extends React.Component {
   }
 
   fetchReviews() {
+    console.log('hello poppet');
     let id = window.location.href.split('/')[4]
-    axios.get(`${BASE_URL}/api/restaurants/${id}`)
-    .then(({data}) => {
-      this.setState({
-        title: data.name,
-        neighborhood: data.neighborhood,
-        price_level: data.price_level,
-        city: data.city,
-        street: data.street
+    console.log('fetching'. id);
+    axios.get(`/api/restaurants/${id}`)
+      .then(({ data }) => {
+        console.log(data);
+        this.setState({
+          title: data.name,
+          neighborhood: data.neighborhood,
+          price_level: data.price_level,
+          city: data.city,
+          street: data.street,
+        });
       })
-    })
-    .catch((err) => {
-      console.log('ERROR: ', err)
-    })
+      .catch((err) => {
+        console.log('ERROR: ', err);
+      });
   }
 
   render() {

@@ -3,8 +3,8 @@ const morgan = require('morgan');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3003;
-const Stores = require('./../db/models/store.js');
+const port = 3003;
+const Stores = require('./../db/pgresdb.js');
 
 const bodyParser = require('body-parser');
 
@@ -26,12 +26,24 @@ app.get('/restaurants/:id', (req, res) => {
 });
 
 app.get('/api/restaurants/:id', (req, res) => {
-  const place_id = req.params.id;
-  // console.log('place_id IS :', place_id)
-  Stores.findOne(place_id)
+  const placeId = req.params.id;
+  Stores.findOnePlace(placeId)
     .then((data) => {
-      // console.log('data ', data);
-      res.send(data[0]);
+      res.send(data.rows[0]);
+    })
+    .catch((err) => {
+      throw err;
+    });
+});
+
+app.get('/api/restaurants/:id/reviews', (req, res) => {
+  const placeId = req.params.id;
+  Stores.findReviews(placeId)
+    .then((data) => {
+      res.send(data.rows);
+    })
+    .catch((err) => {
+      throw err;
     });
 });
 
