@@ -38,34 +38,11 @@ app.get('/api/restaurants/:id', (req, res) => {
     if (data) {
       res.send(data);
     } else {
-      Stores.findOnePlace(placeId)
+      Stores.findOne(placeId)
         .then((place) => {
           console.log(place);
           client.set(placeId, JSON.stringify(place.rows[0]));
           res.send(place.rows[0]);
-        })
-        .catch((error) => {
-          throw error;
-        });
-    }
-  });
-});
-
-app.get('/api/restaurants/:id/reviews', (req, res) => {
-  const placeId = req.params.id;
-  client.get(`${placeId}-reviews`, (err, data) => {
-    if (err) {
-      throw err;
-    }
-
-    if (data) {
-      res.send(data);
-    } else {
-      Stores.findReviews(placeId)
-        .then((reviews) => {
-          console.log(reviews);
-          client.setex(`${placeId}-reviews`, JSON.stringify(reviews.rows));
-          res.send(reviews.rows);
         })
         .catch((error) => {
           throw error;

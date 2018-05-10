@@ -41,7 +41,7 @@ export default class Reviews extends React.Component {
       rating: '',
       modalIsOpen: false,
     };
-    this.fetchReviews = this.fetchReviews.bind(this)
+    this.fetchReviews = this.fetchReviews.bind(this);
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -64,8 +64,9 @@ export default class Reviews extends React.Component {
 
   fetchReviews() {
     const id = window.location.href.split('/')[4];
-    axios.get(`/api/restaurants/${id}/reviews`)
+    axios.get(`/api/restaurants/${id}`)
       .then(({ data }) => {
+        console.log(data);
         let total = 0;
         for (let i = 0; i < data.length; i += 1) {
           total += data[i].rating;
@@ -88,56 +89,56 @@ export default class Reviews extends React.Component {
       return `${percent}%`;
     };
 
-     return (
-       <div>
-         <Modal
+    return (
+      <div>
+        <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
-          >
+        >
           <div className='reviews-modal-container'>
             <div className="reviews-title">
               <div ref={subtitle => this.subtitle = subtitle} className="reviews-title-google">GOOGLE REVIEWS</div>
-                <div className="reviews-title-stars"><span>{this.state.rating}   </span>
-                  <div className="reviews-details-ratings-stars">
-                   <div className="reviews-details-ratings-stars-top" style={{width: starsPercentage(this.state.rating)}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                   <div className="reviews-details-ratings-stars-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                 </div>
-               </div>
+              <div className="reviews-title-stars"><span>{this.state.rating}   </span>
+                <div className="reviews-details-ratings-stars">
+                  <div className="reviews-details-ratings-stars-top" style={{width: starsPercentage(this.state.rating)}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                  <div className="reviews-details-ratings-stars-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                </div>
+              </div>
             </div>
             {this.state.reviewList.map((review, index) =>
-              <Review
-              key={index}
-              review={review}
-              />
-            )}
+              (<Review
+                key={index}
+                review={review}
+              />))
+            }
             <div className='review-container-footer'>
               <div className="reviews-modal-footer"><center>END OF RESULTS</center></div>
             </div>
           </div>
         </Modal>
-         <div className="reviews-container">
-           <div className="reviews-title">
-             <div className="reviews-title-google">GOOGLE REVIEWS</div>
-             <div className="reviews-title-stars"><span>{this.state.rating}   </span>
-               <div className="reviews-details-ratings-stars">
+        <div className="reviews-container">
+          <div className="reviews-title">
+            <div className="reviews-title-google">GOOGLE REVIEWS</div>
+            <div className="reviews-title-stars"><span>{this.state.rating}   </span>
+              <div className="reviews-details-ratings-stars">
                 <div className="reviews-details-ratings-stars-top" style={{width: starsPercentage(this.state.rating)}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                 <div className="reviews-details-ratings-stars-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
               </div>
             </div>
-           </div>
-           {shortReviewArr.map((review, index) =>
-             <Review
-             key={index}
-             review={review}
-             />
-           )}
-         <div className='review-container-footer'>
-           <button className='reviews-footer-btn' onClick={this.openModal}>MORE REVIEWS</button>
+          </div>
+          {shortReviewArr.map((review, index) =>
+            (<Review
+              key={index}
+              review={review}
+            />))
+          }
+        <div className='review-container-footer'>
+          <button className='reviews-footer-btn' onClick={this.openModal}>MORE REVIEWS</button>
+        </div>
         </div>
       </div>
-    </div>
     );
-   }
- }
+  }
+}
