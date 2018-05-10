@@ -66,14 +66,15 @@ export default class Reviews extends React.Component {
     const id = window.location.href.split('/')[4];
     axios.get(`/api/restaurants/${id}`)
       .then(({ data }) => {
-        console.log(data);
+        const reviews = data.reviews;
+        console.log(reviews);
         let total = 0;
-        for (let i = 0; i < data.length; i += 1) {
-          total += data[i].rating;
+        for (let i = 0; i < reviews.length; i += 1) {
+          total += reviews[i][0].rating;
         }
-        const avg = total / data.length;
+        const avg = total / reviews.length;
         this.setState({
-          reviewList: data,
+          reviewList: reviews,
           rating: avg,
         });
       })
@@ -102,7 +103,7 @@ export default class Reviews extends React.Component {
               <div ref={subtitle => this.subtitle = subtitle} className="reviews-title-google">GOOGLE REVIEWS</div>
               <div className="reviews-title-stars"><span>{this.state.rating}   </span>
                 <div className="reviews-details-ratings-stars">
-                  <div className="reviews-details-ratings-stars-top" style={{width: starsPercentage(this.state.rating)}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                  <div className="reviews-details-ratings-stars-top" style={{ width: starsPercentage(this.state.rating) }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                   <div className="reviews-details-ratings-stars-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                 </div>
               </div>
@@ -123,7 +124,7 @@ export default class Reviews extends React.Component {
             <div className="reviews-title-google">GOOGLE REVIEWS</div>
             <div className="reviews-title-stars"><span>{this.state.rating}   </span>
               <div className="reviews-details-ratings-stars">
-                <div className="reviews-details-ratings-stars-top" style={{width: starsPercentage(this.state.rating)}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                <div className="reviews-details-ratings-stars-top" style={{ width: starsPercentage(this.state.rating) }}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                 <div className="reviews-details-ratings-stars-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
               </div>
             </div>
@@ -131,7 +132,7 @@ export default class Reviews extends React.Component {
           {shortReviewArr.map((review, index) =>
             (<Review
               key={index}
-              review={review}
+              review={review[0]}
             />))
           }
         <div className='review-container-footer'>

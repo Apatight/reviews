@@ -24,35 +24,33 @@ export default class Description extends React.Component {
   }
 
   createMarkup() {
-    return {__html: this.state.descriptionBody}; // Allow for bold text
+    return { __html: this.state.descriptionBody };
   }
 
   fetchReviews() {
-    let id = window.location.href.split('/')[4];
+    const id = window.location.href.split('/')[4];
     axios.get(`/api/restaurants/${id}`)
-      .then(({data}) => {
+      .then(({ data }) => {
         console.log(data);
         this.setState({
           title: data.name,
           neighborhood: data.neighborhood,
           price_level: data.price_level,
           city: data.city,
-          street: data.street
-        })
+          street: data.street,
+        });
       })
       .catch((err) => {
-        console.log('ERROR: ', err)
-      })
+        console.log('ERROR: ', err);
+      });
   }
 
   render() {
-    let priceRange = [];
-    for (var i = 0; i < this.state.price_level; i++) {
+    const priceRange = [];
+    for (let i = 0; i < this.state.price_level; i += 1) {
       priceRange.push('$');
     }
-    let dollar = priceRange.map((dollar) => {
-      return dollar;
-    })
+    const dollar = priceRange.join('');
 
     return (
       <div className="reviews-container">
@@ -78,7 +76,7 @@ export default class Description extends React.Component {
             <div className="description-ratings-label">SERVICE</div>
           </div>
         </div>
-        <div className="description-body" dangerouslySetInnerHTML={this.createMarkup()}/>
+        <div className="description-body" dangerouslySetInnerHTML={this.createMarkup()} />
       </div>
     );
   }

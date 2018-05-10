@@ -40,9 +40,8 @@ app.get('/api/restaurants/:id', (req, res) => {
     } else {
       Stores.findOne(placeId)
         .then((place) => {
-          console.log(place);
-          client.set(placeId, JSON.stringify(place.rows[0]));
-          res.send(place.rows[0]);
+          client.set(placeId, JSON.stringify(place[0]));
+          res.send(place[0]);
         })
         .catch((error) => {
           throw error;
