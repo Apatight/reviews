@@ -1,8 +1,10 @@
 require('newrelic');
+const redis = require('redis');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 
+const client = redis.createClient();
 const app = express();
 const port = 3003;
 const Stores = require('./../db/pgresdb.js');
@@ -28,24 +30,46 @@ app.get('/restaurants/:id', (req, res) => {
 
 app.get('/api/restaurants/:id', (req, res) => {
   const placeId = req.params.id;
-  Stores.findOnePlace(placeId)
-    .then((data) => {
-      res.send(data.rows[0]);
-    })
-    .catch((err) => {
+  client.get(placeId, (err, data) => {
+    if (err) {
       throw err;
-    });
+    }
+
+    if (data) {
+      res.send(data);
+    } else {
+      Stores.findOnePlace(placeId)
+        .then((place) => {
+          client.set(placeId, JSON.stringify(place.rows[0]));
+          res.send(place.rows[0]);
+        })
+        .catch((error) => {
+          throw error;
+        });
+    }
+  });
 });
 
 app.get('/api/restaurants/:id/reviews', (req, res) => {
   const placeId = req.params.id;
-  Stores.findReviews(placeId)
-    .then((data) => {
-      res.send(data.rows);
-    })
-    .catch((err) => {
+  client.get(`${placeId}-reviews`, (err, data) => {
+    if (err) {
       throw err;
-    });
+    }
+
+    if (data) {
+      res.send(data);
+    } else {
+      Stores.findReviews(placeId)
+        .then((reviews) => {
+          client.setex(`${placeId}-reviews`, JSON.stringify(reviews.rows));
+          res.send(reviews.rows);
+        })
+        .catch((error) => {
+          throw error;
+        });
+    }
+  });
 });
 
 app.listen(port, () => {
