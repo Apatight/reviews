@@ -8,12 +8,18 @@ const port = 3003;
 const ip = '127.0.0.1';
 
 const router = {
-  '/classes/messages': messages.requestHandler,
-  '/restaurants/': () => 0,
-  // ...
+  '/restaurants/*/reviews': () => 0,
+  '/restuarants/*': () => 1,
 };
 
+const matchRuleShort = (str, rule) => new RegExp(`^${rule.split('*').join('.*')}$`).test(str);
+
 const server = http.createServer((req, res) => {
+  for (let i = 0; i < Object.keys(router).length; i += 1) {
+    if(matchRuleShort(url.parse(req.url).pathname), router[Object.keys(router)[i]]) {
+      route = 
+    }
+  }
   const route = router[url.parse(req.url).pathname];
   if (route) {
     route(req, res);
