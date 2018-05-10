@@ -7,7 +7,7 @@ const path = require('path');
 const client = redis.createClient();
 const app = express();
 const port = 3003;
-const Stores = require('./../db/pgresdb.js');
+const Stores = require('./../db/models/store.js');
 
 const bodyParser = require('body-parser');
 
@@ -40,6 +40,7 @@ app.get('/api/restaurants/:id', (req, res) => {
     } else {
       Stores.findOnePlace(placeId)
         .then((place) => {
+          console.log(place);
           client.set(placeId, JSON.stringify(place.rows[0]));
           res.send(place.rows[0]);
         })
@@ -62,6 +63,7 @@ app.get('/api/restaurants/:id/reviews', (req, res) => {
     } else {
       Stores.findReviews(placeId)
         .then((reviews) => {
+          console.log(reviews);
           client.setex(`${placeId}-reviews`, JSON.stringify(reviews.rows));
           res.send(reviews.rows);
         })
