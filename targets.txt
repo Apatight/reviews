@@ -1,0 +1,2 @@
+GET http://localhost:3003/api/restaurants/1/reviews
+@/Users/stevenpurn/Documents/HackReactor/SDC/reviews/results.json

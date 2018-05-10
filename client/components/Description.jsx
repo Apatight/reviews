@@ -28,23 +28,21 @@ export default class Description extends React.Component {
   }
 
   fetchReviews() {
-    console.log('hello poppet');
-    let id = window.location.href.split('/')[4]
-    console.log('fetching'. id);
+    let id = window.location.href.split('/')[4];
     axios.get(`/api/restaurants/${id}`)
-      .then(({ data }) => {
+      .then(({data}) => {
         console.log(data);
         this.setState({
           title: data.name,
           neighborhood: data.neighborhood,
           price_level: data.price_level,
           city: data.city,
-          street: data.street,
-        });
+          street: data.street
+        })
       })
       .catch((err) => {
-        console.log('ERROR: ', err);
-      });
+        console.log('ERROR: ', err)
+      })
   }
 
   render() {
