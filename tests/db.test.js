@@ -6,7 +6,7 @@ const db = require('./../db/models/store.js')
 // 3. use database 'apateez'
 
 
-var place_id = 'ChIJO7u9q5-AhYARiSSXyWv9eJ8'
+var place_id = '23'
 
 test('the data is an array', () => {
   expect.assertions(1);

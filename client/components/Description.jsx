@@ -37,34 +37,32 @@ export default class Description extends React.Component {
           neighborhood: data.neighborhood,
           price_level: data.price_level,
           city: data.city,
-          street: data.street
-        })
+          street: data.street,
+        });
       })
       .catch((err) => {
-        console.log('ERROR: ', err)
-      })
+        console.log('ERROR: ', err);
+      });
   }
 
   render() {
-    let priceRange = [];
-    for (var i = 0; i < this.state.price_level; i++) {
+    const priceRange = [];
+    for (let i = 0; i < this.state.price_level; i += 1) {
       priceRange.push('$');
     }
-    let dollar = priceRange.map((dollar) => {
-      return dollar;
-    })
+    const dollar = priceRange.join('');
 
     return (
       <div className="reviews-container">
         <div className="description-title">{this.state.title}</div>
         <div className="description-type">{this.state.city} {this.state.street} Restaurant</div>
         <div className="description-details-container">
-          <div className="description-details">{this.state.neighborhood}</div><div className='desription-details-seperator'>·</div>
+          <div className="description-details">{this.state.neighborhood}</div><div className="desription-details-seperator">·</div>
           <div className="description-details">{dollar}</div>
         </div>
         <div className="logo-container">
-          <img src="https://s3-us-west-1.amazonaws.com/apateezassets/apateez-logo-small-red.jpeg" className='apateez-logo'/>
-          <div className="description-divider"/>
+          <img alt="this" src="https://s3-us-west-1.amazonaws.com/apateezassets/apateez-logo-small-red.jpeg" className="apateez-logo" />
+          <div className="description-divider" />
         </div>
         <div className="description-apateez-header">THE APATEEZ REVIEW</div>
         <div className="description-ratings-container">
