@@ -1,5 +1,5 @@
 // const server = require('./../server.js');
-const db = require('./../db/models/store.js')
+const db = require('./../db/pgresdb.js');
 // Notes:
 // 1. Data must be seeded into Mongodb by running npm run seed.
 // 2. Mongodb must be started by using mongod from terminal
