@@ -23,6 +23,5 @@ CREATE TABLE IF NOT EXISTS reviews (
   FOREIGN KEY (place_id) REFERENCES places
 );
 
-copy places FROM '/Users/stevenpurn/Documents/HackReactor/SDC/reviews/dummydata/postgresData.csv' DELIMITER '|' CSV;
-
-copy reviews FROM '/Users/stevenpurn/Documents/HackReactor/SDC/reviews/dummydata/postgresReviews.csv' DELIMITER '|' CSV;
+--\COPY places FROM './postgresData.csv' DELIMITER '|' CSV
+\COPY reviews FROM './postgresReviews.csv' DELIMITER '|' CSV

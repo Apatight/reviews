@@ -1,0 +1,14 @@
+config:
+  target: 'http://localhost:3003'
+  phases:
+    - duration: 90
+      arrivalRate: 400
+      rampTo: 1200
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - get:
+        url: "/api/restaurants/1"
+

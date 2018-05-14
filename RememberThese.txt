@@ -1,1 +1,3 @@
 mongoimport --jsonArray -d apatight -c restaurants2  --file places.json --numInsertionWorkers 8
+
+artillery quick -d 60 --count 700 -n 700 http://localhost:3003/restaurants/2

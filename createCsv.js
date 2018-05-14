@@ -1,7 +1,7 @@
 const fs = require('fs');
 const faker = require('faker');
 
-const fileName = 'dummydata/postgresData.csv';
+const fileName = 'dummydata/postgresReviews.csv';
 const entryNum = 10000000;
 
 const createPlace = (index) => {
@@ -46,5 +46,10 @@ const generateCSV = (count, factory) => {
 };
 
 // Should comment one of these as they're calling an aync func
-generateCSV(entryNum, createPlace);
-//generateCSV(entryNum, createReviews);
+// generateCSV(entryNum, createPlace);
+// generateCSV(entryNum, createReviews);
+
+
+module.exports.createReviews = createReviews;
+module.exports.createReview = createReview;
+module.exports.createPlace = createPlace;

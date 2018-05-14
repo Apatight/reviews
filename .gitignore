@@ -59,5 +59,9 @@ typings/
 
 /dummydata/
 
-public/app.js
 .DS_Store
+*/app.js
+
+newrelic.js
+
+results.json
