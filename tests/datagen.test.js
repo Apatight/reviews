@@ -1,8 +1,4 @@
 const generator = require('./../createCsv.js');
-// Notes:
-// 1. Data must be seeded into Mongodb by running npm run seed.
-// 2. Mongodb must be started by using mongod from terminal
-// 3. use database 'apateez'
 
 test('a review is generated with the correct number of properties', () => {
   const data = generator.createReview();

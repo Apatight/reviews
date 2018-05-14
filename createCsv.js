@@ -47,7 +47,7 @@ const generateCSV = (count, factory) => {
 
 // Should comment one of these as they're calling an aync func
 // generateCSV(entryNum, createPlace);
-generateCSV(entryNum, createReviews);
+// generateCSV(entryNum, createReviews);
 
 
 module.exports.createReviews = createReviews;
