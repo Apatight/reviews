@@ -63,3 +63,5 @@ typings/
 */app.js
 
 newrelic.js
+
+results.json
