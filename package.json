@@ -11,9 +11,9 @@
     "test:coverage": "jest --coverage",
     "build": "webpack -d --watch",
     "build:prod": "webpack -p",
-    "start": "nodemon ./server/server.js",
+    "start": "node ./server/server.js",
     "seed": "node ./seedDb.js",
-    "docker": "npm run build:prod && npm run seed & npm run start",
+    "docker": "npm run build:prod && npm run start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "fix": "truncate -s -1 dummydata2.json && echo ] >> dummydata2.json"

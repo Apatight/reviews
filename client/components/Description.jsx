@@ -24,13 +24,13 @@ export default class Description extends React.Component {
   }
 
   createMarkup() {
-    return {__html: this.state.descriptionBody}; // Allow for bold text
+    return { __html: this.state.descriptionBody }; // Allow for bold text
   }
 
   fetchReviews() {
-    let id = window.location.href.split('/')[4];
+    const id = window.location.href.split('/')[4];
     axios.get(`/api/restaurants/${id}`)
-      .then(({data}) => {
+      .then(({ data }) => {
         console.log(data);
         this.setState({
           title: data.name,

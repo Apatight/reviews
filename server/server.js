@@ -1,10 +1,10 @@
-require('newrelic');
+// require('newrelic');
 const redis = require('redis');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 
-const client = redis.createClient();
+const client = redis.createClient({ host: 'redis', port: 6379 });
 const app = express();
 const port = 3003;
 const Stores = require('./../db/pgresdb.js');
@@ -26,6 +26,10 @@ app.use('/restaurants', express.static(path.join(__dirname, '../public')));
 
 app.get('/restaurants/:id', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
+app.get('/loaderio-2b10ddf28f9c95beb7252ab8b39874af', (req, res) => {
+  res.send('loaderio-2b10ddf28f9c95beb7252ab8b39874af');
 });
 
 app.get('/api/restaurants/:id', (req, res) => {
@@ -62,7 +66,7 @@ app.get('/api/restaurants/:id/reviews', (req, res) => {
     } else {
       Stores.findReviews(placeId)
         .then((reviews) => {
-          client.setex(`${placeId}-reviews`, JSON.stringify(reviews.rows));
+          client.set(`${placeId}-reviews`, JSON.stringify(reviews.rows));
           res.send(reviews.rows);
         })
         .catch((error) => {
