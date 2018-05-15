@@ -4,7 +4,8 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 
-const client = redis.createClient({ host: 'redis', port: 6379 });
+//const client = redis.createClient({ host: 'redis', port: 6379 });
+const client = redis.createClient({ host: 'localhost', port: 6379 });
 const app = express();
 const port = 3003;
 const Stores = require('./../db/pgresdb.js');

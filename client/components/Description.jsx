@@ -29,7 +29,7 @@ export default class Description extends React.Component {
 
   fetchReviews() {
     const id = window.location.href.split('/')[4];
-    axios.get(`/api/restaurants/${id}`)
+    axios.get(`${BASE_URL}/api/restaurants/${id}`)
       .then(({ data }) => {
         console.log(data);
         this.setState({

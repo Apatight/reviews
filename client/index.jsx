@@ -6,10 +6,10 @@ import './style.css';
 
 ReactDOM.render(
   React.createElement(Reviews),
-  document.getElementById('reviews')
+  document.getElementById('reviews'),
 );
 
 ReactDOM.render(
   React.createElement(Description),
-  document.getElementById('description')
+  document.getElementById('description'),
 );
