@@ -4,8 +4,8 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 
-//const client = redis.createClient({ host: 'redis', port: 6379 });
-const client = redis.createClient({ host: 'localhost', port: 6379 });
+const client = redis.createClient({ host: 'redis', port: 6379 });
+//const client = redis.createClient({ host: 'localhost', port: 6379 });
 const app = express();
 const port = 3003;
 const Stores = require('./../db/pgresdb.js');
@@ -31,6 +31,10 @@ app.get('/restaurants/:id', (req, res) => {
 
 app.get('/loaderio-2b10ddf28f9c95beb7252ab8b39874af', (req, res) => {
   res.send('loaderio-2b10ddf28f9c95beb7252ab8b39874af');
+});
+
+app.get('/loaderio-242b495c70109d797f4eabbbe285f25a', (req, res) => {
+  res.send('loaderio-242b495c70109d797f4eabbbe285f25a');
 });
 
 app.get('/api/restaurants/:id', (req, res) => {
